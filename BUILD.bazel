@@ -1,0 +1,18 @@
+cc_import(
+    name = "bad",
+    shared_library = "libbad.dylib",
+)
+
+cc_binary(
+    name = "stub",
+    linkshared = True,
+    deps = ["bad"],
+    srcs = ["stub.c"],
+)
+
+java_test(
+    name = "Test1",
+    srcs = ["Test1.java"],
+    test_class = "Test1",
+    runtime_deps = ["stub"],
+)
